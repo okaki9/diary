@@ -203,3 +203,5 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 
 # ログアウトのクリック一発でログアウトする設定
 ACCOUNT_LOGOUT_ON_GET = True
+
+MEDIA_URL = '/media'
