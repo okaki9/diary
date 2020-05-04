@@ -3,6 +3,8 @@ from django.shortcuts import render
 # Create your views here.
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib import messages
+
 import logging
 
 from django.urls import reverse_lazy
@@ -25,6 +27,7 @@ class InquiryView(generic.FormView):
 
     def form_valid(self, form):
         form.send_email()
+        messages.success(self.request, 'メッセージを送信しました。')
         logger.info('Inquiry sent by {}'.format(form.cleaned_data['name']))
         return super().form_valid(form)
 
@@ -40,9 +43,8 @@ class DiaryListView(LoginRequiredMixin, generic.ListView):
 class DiaryDetailView(LoginRequiredMixin, generic.DetailView):
     model = Diary
     template_name = 'diary_detail.html'
-    pk_url_kwarg = 'id'
 
-class DiaryCreateForm(LoginRequiredMixin, generic.CreateView):
+class DiaryCreateView(LoginRequiredMixin, generic.CreateView):
     model = Diary
     template_name = 'diary_create.html'
     form_class = DiaryCreateForm
