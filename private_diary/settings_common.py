@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+
+    'django_ses',
 ]
 
 MIDDLEWARE = [
@@ -207,3 +209,6 @@ ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_GET = True
 
 MEDIA_URL = '/media/'
+
+BACKUP_PATH = 'backup/'
+NUM_SAVED_BACKUP = 30
